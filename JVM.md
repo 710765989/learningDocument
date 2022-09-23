@@ -13,7 +13,7 @@
 
 ### JDK1.8之后
 
-![](img\java-runtime-data-areas-jdk1.8.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/java-runtime-data-areas-jdk1.8.png)
 
 ### 程序计数器
 
@@ -38,7 +38,7 @@
 
 栈由多个栈帧组成，每个栈帧中都拥有：局部变量表、操作数栈、动态链接、方法返回地址。和数据结构上的栈类似，两者都是先进后出的数据结构，只支持出栈和入栈两种操作。
 
-![](img\stack-area.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/stack-area.png)
 
 #### 局部变量表
 
@@ -152,7 +152,7 @@ Java 堆是**垃圾收集器管理的主要区域**，因此也被称作 **GC �
 
 下图所示的 Eden 区、两个 Survivor 区 S0 和 S1 都属于新生代，中间一层属于老年代，最下面一层属于永久代。
 
-![](img\hotspot-heap-structure.41533631.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/hotspot-heap-structure.41533631.png)
 
 **JDK 8 版本之后 PermGen(永久) 已被 Metaspace(元空间) 取代，元空间使用的是直接内存** 
 
@@ -172,7 +172,7 @@ Java 堆是**垃圾收集器管理的主要区域**，因此也被称作 **GC �
 
 方法区和永久代以及元空间的关系就像接口和实现类的关系，方法区为概念/规范，永久代和元空间为其的不同实现方式。
 
-![](img\method-area-implementation.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/method-area-implementation.png)
 
 **为什么要将永久代 (PermGen) 替换为元空间 (MetaSpace) 呢?**
 
@@ -232,11 +232,11 @@ HotSpot 虚拟机中字符串常量池的实现是 `src/hotspot/share/classfile/
 
 JDK1.7 之前，字符串常量池存放在永久代。JDK1.7 字符串常量池和静态变量从永久代移动了 Java 堆中。
 
-![](img\method-area-jdk1.6.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/method-area-jdk1.6.png)
 
-![](img\method-area-jdk1.7.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/method-area-jdk1.7.png)
 
-![](img\method-area-jdk1.8.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/method-area-jdk1.8.png)
 
 #### JDK 1.7 为什么要将字符串常量池移动到堆中？
 
@@ -254,11 +254,11 @@ JDK1.7 之前，字符串常量池存放在永久代。JDK1.7 字符串常量池
 
 类的完整生命周期：
 
-![](img\类加载过程-完善.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/类加载过程-完善.png)
 
 系统加载 Class 类型的文件主要三步：**加载->连接->初始化**。连接过程又可分为三步：**验证->准备->解析**。
 
-![](img\类加载过程.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/类加载过程.png)
 
 1. **加载**
 
@@ -272,7 +272,7 @@ JDK1.7 之前，字符串常量池存放在永久代。JDK1.7 字符串常量池
 
 2. **验证**
 
-   ![](img\验证阶段.png)
+   ![](https://github.com/710765989/learningDocument/blob/main/img/验证阶段.png)
 
 3. **准备**
 
@@ -282,7 +282,7 @@ JDK1.7 之前，字符串常量池存放在永久代。JDK1.7 字符串常量池
 
    通常情况下，准备阶段是初始化为零值，在加了`final`关键字等情况时，准备阶段会直接赋值
 
-   ![](img\基本数据类型的零值.png)
+   ![](https://github.com/710765989/learningDocument/blob/main/img/基本数据类型的零值.png)
 
 4. **解析**
 
@@ -360,13 +360,13 @@ JDK1.7 之前，字符串常量池存放在永久代。JDK1.7 字符串常量池
 
 如果使用句柄的话，那么 Java 堆中将会划分出一块内存来作为句柄池，reference 中存储的就是对象的句柄地址，而句柄中包含了对象实例数据与对象类型数据各自的具体地址信息。
 
-![](img\access-location-of-object-handle.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/access-location-of-object-handle.png)
 
 ### 直接指针
 
 如果使用直接指针访问，reference 中存储的直接就是对象的地址。
 
-![](img\access-location-of-object-handle-direct-pointer.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/access-location-of-object-handle-direct-pointer.png)
 
 ## 类加载器
 
@@ -381,7 +381,7 @@ JVM中内置了三个类加载器，除了 `BootstrapClassLoader` 其他类加�
 
 类加载时会默认使用**双亲委派模型**，在加载的时候会优先把该请求委派给父类加载器的`loadClass()`进行处理
 
-![](img\classloader_WPS图片.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/classloader_WPS图片.png)
 
 **双亲委派模型的好处**
 
@@ -524,7 +524,7 @@ JVM中内置了三个类加载器，除了 `BootstrapClassLoader` 其他类加�
 
 ### 垃圾回收器
 
-![EDFF38A67FA6418F3DCD32C03E8EAF31](img\EDFF38A67FA6418F3DCD32C03E8EAF31.png)
+![EDFF38A67FA6418F3DCD32C03E8EAF31](https://github.com/710765989/learningDocument/blob/main/img/EDFF38A67FA6418F3DCD32C03E8EAF31.png)
 
 图中展示了7种不同的分代收集器，如果两个收集器之间存在连线，则说明它们可以搭配使用
 
@@ -544,7 +544,7 @@ Serial（串行）收集器是最基本、历史最悠久的垃圾收集器。�
 
 **新生代采用标记-复制算法，老年代采用标记-整理算法。**
 
-![](img\46873026.3a9311ec.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/46873026.3a9311ec.png)
 
 它**简单而高效（与其他收集器的单线程相比）**。Serial 收集器由于没有线程交互的开销，自然可以获得很高的单线程收集效率。Serial 收集器对于运行在 Client 模式下的虚拟机来说是个不错的选择。
 
@@ -556,7 +556,7 @@ Serial（串行）收集器是最基本、历史最悠久的垃圾收集器。�
 
 **新生代采用标记-复制算法，老年代采用标记-整理算法。**
 
-![](img\22018368.df835851.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/22018368.df835851.png)
 
 它是许多运行在 Server 模式下的虚拟机的首要选择，除了 Serial 收集器外，只有它能与 CMS 收集器（真正意义上的并发收集器，后面会介绍到）配合工作。
 
@@ -573,7 +573,7 @@ Serial（串行）收集器是最基本、历史最悠久的垃圾收集器。�
 
 **新生代采用标记-复制算法，老年代采用标记-整理算法。**
 
-![](img\22018368.df835851.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/22018368.df835851.png)
 
 **这是 JDK1.8 默认收集器**
 
@@ -610,7 +610,7 @@ CMS使用的是三色标记+Incremental Update算法
 - **重新标记：** 重新标记阶段就是为了修正并发标记期间因为用户程序继续运行而导致标记产生变动的那一部分对象的标记记录，这个阶段的停顿时间一般会比初始标记阶段的时间稍长，远远比并发标记阶段时间短
 - **并发清除：** 开启用户线程，同时 GC 线程开始对未标记的区域做清扫。
 
-![](img\CMS收集器.8a4d0487.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/CMS收集器.8a4d0487.png)
 
 从它的名字就可以看出它是一款优秀的垃圾收集器，主要优点：**并发收集、低停顿**。但是它有下面三个明显的缺点：
 
@@ -628,7 +628,7 @@ CMS使用的是三色标记+Incremental Update算法
 
 G1使用的是三色标记+snapshot at the begining （SATB）算法
 
-![](img\format,png)
+![](https://github.com/710765989/learningDocument/blob/main/img/format,png)
 
 被视为 JDK1.7 中 HotSpot 虚拟机的一个重要进化特征。它具备以下特点：
 
@@ -665,15 +665,15 @@ G1 收集器的运作大致分为以下几个步骤：
 当GC开始扫描对象时，按照如下图步骤进行对象的扫描：
 根对象被置为黑色，子对象被置为灰色。
 
-![](img\webp)
+![](https://github.com/710765989/learningDocument/blob/main/img/webp)
 
 继续由灰色遍历,将已扫描了子对象的对象置为黑色。
 
-![](img\webp2)
+![](https://github.com/710765989/learningDocument/blob/main/img/webp2)
 
 遍历了所有可达的对象后，所有可达的对象都变成了黑色。不可达的对象即为白色，需要被清理。
 
-![](img\webp3)
+![](https://github.com/710765989/learningDocument/blob/main/img/webp3)
 
 这看起来很美好，但是如果在标记过程中，应用程序也在运行，那么对象的指针就有可能改变。这样的话，我们就会遇到一个问题：对象丢失问题
 

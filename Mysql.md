@@ -22,7 +22,7 @@ index = hash % array_size
 一颗高度为2的B+树可以存放 1170 * 16 = 18720 条数据
 一颗高度为3的B+树可以存放 1170 * 1170 * 16 = 21,902,400 条数据（约为2千万）
 <font color="#E3170D">* 一般单表数据达到2千万就需要考虑分库分表了</font>
-![](img\951914-20210806223911480-1865018984.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/951914-20210806223911480-1865018984.png)
 
 #### B树和B+树的区别
 
@@ -87,13 +87,13 @@ index = hash % array_size
 
 另外，`InnoDB` 存储引擎有一个后台线程，每隔`1` 秒，就会把 `redo log buffer` 中的内容写到文件系统缓存（`page cache`），然后调用 `fsync` 刷盘。
 
-![](img\04.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/04.png)
 
 一个没有提交事务的 `redo log` 记录，也可能会刷盘。
 
 因为在事务执行过程 `redo log` 记录是会写入`redo log buffer` 中，这些 `redo log` 记录会被后台线程刷盘。
 
-![](img\05.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/05.png)
 
 
 
@@ -101,11 +101,11 @@ index = hash % array_size
 
 **innodb_flush_log_at_trx_commit=0**
 
-![](img\06.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/06.png)
 
 **innodb_flush_log_at_trx_commit=1**
 
-![](img\07.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/07.png)
 
 为`1`时， 只要事务提交成功，`redo log`记录就一定在硬盘里，不会有任何数据丢失。
 
@@ -113,7 +113,7 @@ index = hash % array_size
 
 **innodb_flush_log_at_trx_commit=2**
 
-![](img\09.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/09.png)
 
 为`2`时， 只要事务提交成功，`redo log buffer`中的内容只写入文件系统缓存（`page cache`）。
 
@@ -136,7 +136,7 @@ index = hash % array_size
 
 它采用环形数组结构
 
-![](img\10.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/10.png)
 
 在**日志文件组**中有两个重要属性，分别是：
 
@@ -147,7 +147,7 @@ index = hash % array_size
 
 当每次`Mysql`加载**日志文件组**来恢复数据时，会清空加载过的`redo log`内容，并将`checkpoint`往后移
 
-![](img\11.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/11.png)
 
 如果`write pos`与`checkpoint`指针重合，则表示**日志文件组**已经满了，此时会清空一些记录，并更新`checkpoint`位置
 
@@ -159,7 +159,7 @@ index = hash % array_size
 
 `MySQL`数据库的**数据备份、主备、主主、主从**都离不开`binlog`，需要依靠`binlog`来同步数据，保证数据一致性。
 
-![](img\01-20220305234724956.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/01-20220305234724956.png)
 
 `binlog`会记录所有更新操作，顺序写入。
 
@@ -175,7 +175,7 @@ index = hash % array_size
 
 `statement`模式下，记录的内容为SQL原文，比如执行一条`update T set update_time=now() where id=1`，记录的内容如下。
 
-![](img\02-20220305234738688.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/02-20220305234738688.png)
 
 同步数据时会执行SQL语句，但是存在一个问题，`update_time=now()`会获取当前系统时间，与原数据不一致
 
@@ -183,7 +183,7 @@ index = hash % array_size
 
 为了解决这个问题，需要指定为`row`模式，该模式下会记录所有具体数据，记录内容如下。
 
-![](img\03-20220305234742460.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/03-20220305234742460.png)
 
 `row`格式记录的内容无法直接读取，需要通过`mysqlbinlog`工具进行解析。
 
@@ -213,7 +213,7 @@ index = hash % array_size
 
 `binlog`日志刷盘流程如下
 
-![](img\04-20220305234747840.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/04-20220305234747840.png)
 
 - **上图的 write，是指把日志写入到文件系统的 page cache，并没有把数据持久化到磁盘，所以速度比较快**
 - **上图的 fsync，才是将数据持久化到磁盘的操作**
@@ -226,14 +226,14 @@ index = hash % array_size
 
 - 0：表示每次提交事务都只`write`，由系统自行判断什么时候执行`fsync`。
 
-  ![](img\05-20220305234754405.png)
+  ![](https://github.com/710765989/learningDocument/blob/main/img/05-20220305234754405.png)
 
 ​	虽然性能会得到提升，但是如果机器宕机，`page cache`里缓存的`binlog`会丢失。
 
 - 1：表示每次提交事务都会执行`fsync`，就如同 **redo log 日志刷盘流程** 一样。
 - `N(N>1)`：这是一种折中的方式，表示每次提交事务都`write`，但累积`N`个事务后才`fsync`。
 
-  ![](img\06-20220305234801592.png)
+  ![](https://github.com/710765989/learningDocument/blob/main/img/06-20220305234801592.png)
   
   在出现`IO`瓶颈的场景里，将`sync_binlog`设置成一个比较大的值，可以提升性能。
   
@@ -253,7 +253,7 @@ index = hash % array_size
 
 在执行更新语句过程，会记录`redo log`与`binlog`两块日志，以基本的事务为单位，`redo log`在事务执行过程中可以不断写入，而`binlog`只有在提交事务时才写入，所以`redo log`与`binlog`的写入时机不一样。
 
- ![](img\01-20220305234816065.png)
+ ![](https://github.com/710765989/learningDocument/blob/main/img/01-20220305234816065.png)
 
 `redo log`与`binlog`两份日志之间的逻辑不一致，会出现什么问题？
 
@@ -261,25 +261,25 @@ index = hash % array_size
 
 假设执行过程中写完`redo log`日志后，`binlog`日志写期间发生了异常，会出现什么情况呢？
 
-![](img\02-20220305234828662.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/02-20220305234828662.png)
 
 由于`binlog`没写完就异常，这时候`binlog`里面没有对应的修改记录。因此，之后用`binlog`日志恢复数据时，就会少这一次更新，恢复出来的这一行`c`值是`0`，而原库因为`redo log`日志恢复，这一行`c`值是`1`，最终数据不一致。
 
-![](img\03-20220305235104445.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/03-20220305235104445.png)
 
 为了解决两份日志之间的逻辑一致问题，`InnoDB`存储引擎使用**两阶段提交**方案。
 
 原理很简单，将`redo log`的写入拆成了两个步骤`prepare`（准备）和`commit`（提交），这就是**两阶段提交**。
 
-![](img\04-20220305234956774.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/04-20220305234956774.png)
 
 使用**两阶段提交**后，写入`binlog`时发生异常也不会有影响，因为`MySQL`根据`redo log`日志恢复数据时，发现`redo log`还处于`prepare`阶段，并且没有对应`binlog`日志，就会回滚该事务。
 
-![](img\05-20220305234937243.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/05-20220305234937243.png)
 
 `redo log`设置`commit`阶段发生异常，那会不会回滚事务呢？
 
-![](img\06-20220305234907651.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/06-20220305234907651.png)
 
 并不会回滚事务，它会执行上图框住的逻辑，虽然`redo log`是处于`prepare`阶段，但是能通过事务`id`找到对应的`binlog`日志，所以`MySQL`认为是完整的，就会提交事务恢复数据。
 
@@ -440,7 +440,7 @@ Mysql在**REPEATABLE-READ(可重复读)**级别下，解决了幻读问题，它
 1. 跟聚集索引一样，非聚集索引也依赖于有序的数据
 2. **可能会二次查询(回表)** :这应该是非聚集索引最大的缺点了。 当查到索引对应的指针或主键后，可能还需要根据指针或主键再到数据文件或表中查询。
 
-![](img\20210420165311654.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/20210420165311654.png)
 
 ### 覆盖索引
 

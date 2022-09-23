@@ -9,7 +9,7 @@
 
 ### JDK1.8之前
 
-![](img\java-runtime-data-areas-jdk1.7.png)
+![](https://github.com/710765989/learningDocument/blob/main/img/java-runtime-data-areas-jdk1.7.png)
 
 ### JDK1.8之后
 

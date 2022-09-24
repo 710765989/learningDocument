@@ -1,6 +1,4 @@
-# Spring
-
-## Spring的事务传播机制
+# Spring的事务传播机制
 
 Spring有七种事务传播机制
 
@@ -46,5 +44,12 @@ Spring有七种事务传播机制
 
    以非事务方式运行，如果当前存在事务，则抛出异常。
 
+# Spring生命周期
+
+![](https://github.com/710765989/learningDocument/blob/main/img/spring生命周期.jpg)
+
+# Spring三级缓存
+
+![](https://github.com/710765989/learningDocument/blob/main/img/spring三级缓存解决循环依赖.jpg)
 
 

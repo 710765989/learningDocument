@@ -58,7 +58,8 @@
 
 1. 添加互斥锁或分布式锁，让一个线程去访问数据库，将数据添加到缓存中后，其他线程直接从缓存中获取。
 2. 热点数据key不过期，定时更新缓存，但如果更新出问题会导致缓存中的数据一直为旧数据。
-3. 逻辑过期，不设置redis过期时间，增加过期时间字段，通过逻辑判断加锁更新数据![image-20230609011001535](img/image-20230609011001535.png)
+3. 逻辑过期，不设置redis过期时间，增加过期时间字段，通过逻辑判断加锁更新数据
+![image-20230609011001535](https://github.com/710765989/learningDocument/blob/main/img/image-20230609011001535.png)
 
 # 缓存雪崩
 
@@ -159,7 +160,7 @@ auto-aof-rewrite-percentage 100
 auto-aof-rewrite-min-size 64mb
 ```
 
-![image-20230610012421668](img\image-20230610012421668.png)
+![image-20230610012421668](https://github.com/710765989/learningDocument/blob/main/img/image-20230610012421668.png)
 
 
 
@@ -187,7 +188,7 @@ redis结合这两种策略一起使用
 7. allkeys-lfu：对所有key，基于**LFU（Least Frequently Used最少频率使用：淘汰访问频率较低的key）**算法进行淘汰
 8. volatile-lfu：对设置了TTL的key，基于LFU算法进行淘汰
 
-![image-20230610014548994](img\image-20230610014541840.png)
+![image-20230610014548994](https://github.com/710765989/learningDocument/blob/main/img/image-20230610014541840.png)
 
 
 
@@ -206,7 +207,7 @@ redis结合这两种策略一起使用
 - cache 中读取不到的话，就从 db 中读取数据返回
 - 再把数据放到 cache 中。
 
-![img](img\cache-aside-write.png)
+![img](https://github.com/710765989/learningDocument/blob/main/img/cache-aside-write.png)
 
 
 
@@ -234,16 +235,16 @@ redis结合这两种策略一起使用
 
 # 分布式锁
 
-![image-20230610213548066](img\image-20230610213548066.png)
+![image-20230610213548066](https://github.com/710765989/learningDocument/blob/main/img/image-20230610213548066.png)
 
 # 集群
 
 ## 全量同步
 
-![image-20230610214323229](img\image-20230610214323229.png)
+![image-20230610214323229](https://github.com/710765989/learningDocument/blob/main/img/image-20230610214323229.png)
 
 ## 增量同步
 
-![image-20230610234734090](img\image-20230610234734090.png)
+![image-20230610234734090](https://github.com/710765989/learningDocument/blob/main/img/image-20230610234734090.png)
 
-![image-20230610234608994](img\image-20230610234608994.png)
+![image-20230610234608994](https://github.com/710765989/learningDocument/blob/main/img/image-20230610234608994.png)

@@ -46,10 +46,10 @@ Spring有七种事务传播机制
 
 # Spring生命周期
 
-![/img/spring生命周期.jpg](http://github.com/710765989/learningDocument/blob/main/img/spring生命周期.jpg)
+![/img/spring生命周期.jpg](https://github.com/710765989/learningDocument/blob/main/img/spring生命周期.jpg)
 
 # Spring三级缓存
 
-![](http://github.com/710765989/learningDocument/blob/main/img/spring三级缓存解决循环依赖.jpg)
+![](https://github.com/710765989/learningDocument/blob/main/img/spring三级缓存解决循环依赖.jpg)
 
 

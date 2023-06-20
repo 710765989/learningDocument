@@ -50,6 +50,6 @@ Spring有七种事务传播机制
 
 # Spring三级缓存
 
-![](https://github.com/710765989/learningDocument/blob/main/img/spring三级缓存解决循环依赖.jpg)
+![](http://github.com/710765989/learningDocument/blob/main/img/spring三级缓存解决循环依赖.jpg)
 
 
